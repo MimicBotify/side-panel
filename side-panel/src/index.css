@@ -1,0 +1,256 @@
+.side-panel {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  z-index: 1000;
+  margin: 0;
+  padding: 0;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease-in-out;
+  scrollbar-width: thin;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-color: #888 #f1f1f1;
+}
+
+/* WebKit-based browsers (Chrome, Safari) */
+.side-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.side-panel::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.side-panel::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+  border: 2px solid #f1f1f1;
+}
+
+.side-panel::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* Firefox */
+.side-panel {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+/* Scrollbar for the panel content */
+.panel-content {
+  height: calc(100vh - 40px); /* Adjust for any header or padding */
+  overflow-y: auto;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.side-panel.right {
+  direction: rtl;
+}
+
+.side-panel.right .panel-content {
+  direction: ltr;
+}
+
+/* Hover effects */
+.side-panel:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(136, 136, 136, 0.8);
+}
+
+.side-panel.open {
+  transform: translateX(0);
+}
+
+.side-panel.left {
+  transform: translateX(-100%);
+}
+
+.side-panel.right {
+  transform: translateX(100%);
+}
+
+.side-panel.left.open,
+.side-panel.right.open {
+  transform: translateX(0);
+}
+
+.toggle-button {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  z-index: 9999;
+  opacity: 0.7;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Changed from space-around to center */
+  align-items: center;
+  gap: 6px; /* Added gap between lines */
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.burger-line {
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  transform-origin: center; /* Changed from left to center */
+  position: relative;
+}
+
+.toggle-button.active .burger-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg); /* Added translateY */
+}
+
+.toggle-button.active .burger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.toggle-button.active .burger-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg); /* Added translateY */
+}
+
+.toggle-button:hover {
+  opacity: 1;
+}
+
+.toggle-button.left {
+  left: 20px;
+}
+
+.toggle-button.right {
+  right: 20px;
+}
+
+.panel-content {
+  height: calc(100vh - 40px); /* Adjust for any header or padding */
+  overflow-y: auto;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  
+  /* Firefox scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+  
+  border: none;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Webkit scrollbar base */
+.panel-content::-webkit-scrollbar {
+  width: 8px;
+  height: 100%;
+}
+
+/* Webkit scrollbar track */
+.panel-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+  margin: 0;
+}
+
+/* Webkit scrollbar handle */
+.panel-content::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+  border: 2px solid #f1f1f1;
+  min-height: 50px;
+  transition: background 0.2s ease;
+}
+
+/* Webkit scrollbar handle hover */
+.panel-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Left panel scrollbar positioning */
+.panel[data-side="left"] .panel-content {
+  padding-right: 6px;
+  direction: rtl;
+}
+
+.panel[data-side="left"] .panel-content > * {
+  direction: ltr;
+}
+
+/* Right panel scrollbar positioning */
+.panel[data-side="right"] .panel-content {
+  padding-left: 6px;
+}
+
+/* Firefox specific styles */
+.panel-content {
+  scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.1);
+}
+
+.panel-content h2 {
+  margin-bottom: 15px;
+}
+
+.panel-content ul {
+  padding-left: 20px;
+}
+
+.button-bar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 60px; /* Reduced from 80px */
+  background: transparent;
+  z-index: 2;
+}
+
+.panel-button {
+  padding: 5px 10px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.panel-button:hover {
+  opacity: 0.8;
+}
+
+body.panel-open {
+  overflow: hidden;
+}
+
+html.panel-open,
+body.panel-open {
+  overflow: hidden !important;
+  margin-right: 6px; /* Compensate for scrollbar width */
+}
+
+.panel {
+  overflow: hidden;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none;
+}
+
+/* Right panel scrollbar positioning */
+.side-panel.right .panel-content {
+  direction: rtl;
+}
+
+.side-panel.right .panel-content > * {
+  direction: ltr;
+}
+
+/* Left panel scrollbar positioning */
+.side-panel.left .panel-content {
+  direction: ltr;
+}
